@@ -10,11 +10,10 @@ const App = () => {
   const [showNavbar, setShowNavbar] = useState(true)
 
   useEffect(() => {
-    console.log(window.innerWidth)
     if (window.innerWidth <= 900) {
       setShowNavbar(false)
     }
-    else{
+    else {
       setShowNavbar(true)
     }
   }, [])
@@ -54,7 +53,7 @@ const App = () => {
           </IconButton>
         }
       </Grid>
-      <Grid item xs={12} sm={12} md={8} lg={9} onClick={handleNavbarClose} justifyContent="right">
+      <Grid item xs={12} sm={12} md={8} lg={9} onClick={(window.innerWidth <= 900) ? handleNavbarClose : () => { }} justifyContent="right">
         <Home />
       </Grid>
     </Grid>

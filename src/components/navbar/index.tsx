@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import image from "../../../public/vite.png"
 
 interface ILeftNavbarProps {
     handleNavbarClose: () => void;
@@ -10,7 +11,7 @@ const LeftNavbar: React.FC<ILeftNavbarProps> = ({ handleNavbarClose, showNavbar 
     const [isScreenSmall, setIsScreenSmall] = useState(false)
 
     useEffect(() => {
-        if(window.innerWidth >= 900){
+        if (window.innerWidth <= 900) {
             setIsScreenSmall(true)
         }
 
@@ -25,7 +26,7 @@ const LeftNavbar: React.FC<ILeftNavbarProps> = ({ handleNavbarClose, showNavbar 
                 behavior: 'smooth',
             });
 
-            handleNavbarClose();
+            isScreenSmall && handleNavbarClose();
         }
     };
 
@@ -38,11 +39,34 @@ const LeftNavbar: React.FC<ILeftNavbarProps> = ({ handleNavbarClose, showNavbar 
                 left: '0',
                 top: '0',
                 height: '100vh',
-                backgroundColor: isScreenSmall ? 'rgb(17, 17, 17, 0.7)' : 'rgb(0, 0, 0, 0.9)',
+                backgroundColor: !isScreenSmall ? 'rgb(17, 17, 17, 0.7)' : 'rgb(0, 0, 0, 0.9)',
                 padding: '20px',
                 transition: 'width 1s ease',
             }}
         >
+            <img src={image}
+                onClick={
+                    () => {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth',
+                        });
+
+                        isScreenSmall && handleNavbarClose();
+                    }
+
+
+                }
+                style={{
+                    width: "60%",
+                    padding: "10px",
+                    background: "white",
+                    borderRadius: "50%",
+                    boxShadow: "0 0 5px white",
+                    cursor: "pointer",
+                    marginBottom: "20px",
+                }}
+            />
             <div style={{ color: 'white', marginBottom: '20px', cursor: 'pointer' }}>
                 <p
                     onClick={() => handleSmoothScroll('services')}
